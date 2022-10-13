@@ -14,3 +14,6 @@ my_map.put("Jonathan", 25)
 print(my_map.to_string())
 
 print(f"Size of the tree: {my_map.size()}")
+
+get_test = "Victor"
+print(f"Get value for {get_test}: {my_map.get(get_test)}")

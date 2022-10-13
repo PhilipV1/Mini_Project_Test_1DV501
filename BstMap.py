@@ -47,6 +47,7 @@ class Node:
 
     def count(self):
         '''Traverses the tree and returns the amount of nodes'''
+        # Start at 1 to count the root
         count = 1
         if self.left is not None:
             count += self.left.count()
@@ -55,7 +56,15 @@ class Node:
         return count       # Placeholder code ==> to be replaced
 
     def get(self, key):
-        pass    # Placeholder code ==> to be replaced
+        if self.key == key:
+            return self.value
+        elif self.key < key:
+            if self.right is not None:
+                return self.right.get(key)
+        else:
+            if self.left is not None:
+                return self.left.get(key)
+
 
     def max_depth(self):
         pass     # Placeholder code ==> to be replaced
