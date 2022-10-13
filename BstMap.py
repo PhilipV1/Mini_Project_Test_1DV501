@@ -19,13 +19,41 @@ class Node:
     right: Any = None       # right child (a Node)
 
     def put(self, key, value):
-        pass       # Placeholder code ==> to be replaced
+        '''Inserts a new node as a left/right child of a leaf node'''
+        if key == self.key:
+            self.value = value
+        elif key > self.key:
+            if self.right is not None:
+                self.right.put(key, value)
+            else:
+                self.right = Node(key, value, None, None)
+        else:
+            if self.left is not None:
+                self.left.put(key, value)
+            else:
+                self.left = Node(key, value, None, None)
+        # Placeholder code ==> to be replaced
 
     def to_string(self):
-        return ""  # Placeholder code to avoid crash in demo program. To be replaced
+        '''Traverses the tree and returns a string of the key:value pair
+        recursively'''
+        ret_str = ""
+        if self.left is not None:
+            ret_str += self.left.to_string()
+        # Returning the string in alphabetical order
+        ret_str += f"({self.key}, {self.value}) "
+        if self.right is not None:
+            ret_str += self.right.to_string()
+        return ret_str
 
     def count(self):
-        pass       # Placeholder code ==> to be replaced
+        '''Traverses the tree and returns the amount of nodes'''
+        count = 1
+        if self.left is not None:
+            count += self.left.count()
+        if self.right is not None:
+            count += self.right.count()
+        return count       # Placeholder code ==> to be replaced
 
     def get(self, key):
         pass    # Placeholder code ==> to be replaced
