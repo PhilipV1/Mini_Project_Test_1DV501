@@ -19,48 +19,80 @@ class HashSet:
         p = 37
         m = 10e9 + 9
         hash_val = 0
-        for i, char in enumerate(word.lower()):
-            # We don't want to convert a->0 because a hash of "aaaa" would evaluate to 0
-            hash_val += ((1 + ord(char) - ord('a'))  * p**i) % m
+        for i, char in enumerate(word):
+            # Note: we don't want to convert a->0 because a
+            # string of "aaaa" would evaluate to 0
+            hash_val += ((1 + ord(char) - ord('a')) * p**i) % m
         return round(hash_val)
-            # Placeholder code ==> to be replaced
 
     # Doubles size of bucket list
     def rehash(self):
-        # Test for github
-        pass    # Placeholder code ==> to be replaced
+        copy_bucket = self.buckets
+        self.buckets = [[] for i in range(self.bucket_list_size() * 2)]
+        # Reset size
+        self.size = 0
+        for i in range(len(copy_bucket)):
+            for element in copy_bucket[i]:
+                self.add(element)
 
     # Adds a word to set if not already added
     def add(self, word):
-
-        pass    # Placeholder code ==> to be replaced
+        if self.size >= self.bucket_list_size():
+            self.rehash()
+        if not self.contains(word):
+            word_index = self.get_hash(word) % self.bucket_list_size()
+            self.buckets[word_index].append(word)
+            self.size += 1
 
     # Returns a string representation of the set content
     def to_string(self):
-        pass    # Placeholder code ==> to be replaced
+        ret_str = "{ "
+        for i in range(self.bucket_list_size()):
+            if len(self.buckets[i]) > 0:
+                for element in self.buckets[i]:
+                    ret_str += element + " "
+        ret_str += "}"
+        return ret_str
 
     # Returns current number of elements in set
     def get_size(self):
-        pass    # Placeholder code ==> to be replaced
+        return self.size
 
     # Returns True if word in set, otherwise False
     def contains(self, word):
-        pass    # Placeholder code ==> to be replaced
+        index = self.get_hash(word) % len(self.buckets)
+        for element in self.buckets[index]:
+            if element == word:
+                return True
+        return False
+        # Placeholder code ==> to be replaced
 
     # Returns current size of bucket list
     def bucket_list_size(self):
-        pass    # Placeholder code ==> to be replaced
+        return len(self.buckets)
 
     # Removes word from set if there, does nothing
     # if word not in set
     def remove(self, word):
-        pass    # Placeholder code ==> to be replaced
+        if self.contains(word):
+            word_index = self.get_hash(word) % self.bucket_list_size()
+            self.buckets[word_index].remove(word)
+            self.size -= 1
 
     # Returns the size of the bucket with most elements
     def max_bucket_size(self):
-        pass    # Placeholder code ==> to be replaced
+        max_size = 0
+        for i in range(self.bucket_list_size()):
+            bucket_len = len(self.buckets[i])
+            if bucket_len > max_size:
+                max_size = bucket_len
+        return max_size
 
     # Returns the ratio of buckets of lenght zero.
     # That is: number of zero buckets divided by number of buckets
     def zero_bucket_ratio(self):
-        pass    # Placeholder code ==> to be replaced
+        zero_buckets = 0
+        for bucket in self.buckets:
+            if len(bucket) == 0:
+                zero_buckets += 1
+        return zero_buckets / self.bucket_list_size()
