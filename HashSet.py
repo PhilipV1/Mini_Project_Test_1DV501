@@ -27,6 +27,7 @@ class HashSet:
 
     # Doubles size of bucket list
     def rehash(self):
+        # Test for github
         pass    # Placeholder code ==> to be replaced
 
     # Adds a word to set if not already added
