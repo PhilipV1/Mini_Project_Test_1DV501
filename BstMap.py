@@ -32,7 +32,6 @@ class Node:
                 self.left.put(key, value)
             else:
                 self.left = Node(key, value, None, None)
-        # Placeholder code ==> to be replaced
 
     def to_string(self):
         '''Traverses the tree and returns a string of the key:value pair
