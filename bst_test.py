@@ -21,3 +21,6 @@ print(f"Get value for {get_test}: {my_map.get(get_test)}")
 print(f"Amount of leafs = {my_map.count_leafs()}")
 
 print(f"Max depth = {my_map.max_depth()}")
+
+kv_lst = my_map.as_list()
+print(f"Key value list:\n{kv_lst}")

@@ -65,23 +65,18 @@ class Node:
             if self.left is not None:
                 return self.left.get(key)
 
-
     def max_depth(self):
         '''Returns the max depth of the tree'''
         # Fix this function
         l_depth = 0
         r_depth = 0
         if self.left is not None:
-            l_depth += 1
             l_depth += self.left.max_depth()
         if self.right is not None:
-            r_depth += 1
             r_depth += self.right.max_depth()
         if l_depth > r_depth:
-            return l_depth
-        return r_depth
-            
-        
+            return l_depth + 1
+        return r_depth + 1
 
     def count_leafs(self):
         '''Returns the amount of leaf nodes in the tree'''
@@ -93,12 +88,19 @@ class Node:
         if self.right is None and self.left is None:
             count += 1
         return count
-        
 
     # We do a left-to-right in-order traversal of the tree
     # to get the key-value pairs sorted base on their keys
     def as_list(self, lst):
-        return [None]    # Placeholder code to avoid crash in demo program. To be replaced
+        if self.left is not None:
+            self.left.as_list(lst)
+            lst.append((self.key, self.value))
+
+        if self.right is not None:
+            self.right.as_list(lst)
+            lst.append((self.key, self.value))
+
+        return lst
 
 
 # The BstMap class is rather simple. It basically just takes care
@@ -150,7 +152,7 @@ class BstMap:
         else:
             return self.root.max_depth()
 
-    # Returns a leaf node count. That is, the number of nodes 
+    # Returns a leaf node count. That is, the number of nodes
     # with no children
     def count_leafs(self):
         if self.root is None:
