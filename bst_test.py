@@ -17,3 +17,7 @@ print(f"Size of the tree: {my_map.size()}")
 
 get_test = "Victor"
 print(f"Get value for {get_test}: {my_map.get(get_test)}")
+
+print(f"Amount of leafs = {my_map.count_leafs()}")
+
+print(f"Max depth = {my_map.max_depth()}")

@@ -67,10 +67,33 @@ class Node:
 
 
     def max_depth(self):
-        pass     # Placeholder code ==> to be replaced
+        '''Returns the max depth of the tree'''
+        # Fix this function
+        l_depth = 0
+        r_depth = 0
+        if self.left is not None:
+            l_depth += 1
+            l_depth += self.left.max_depth()
+        if self.right is not None:
+            r_depth += 1
+            r_depth += self.right.max_depth()
+        if l_depth > r_depth:
+            return l_depth
+        return r_depth
+            
+        
 
     def count_leafs(self):
-        pass     # Placeholder code ==> to be replaced
+        '''Returns the amount of leaf nodes in the tree'''
+        count = 0
+        if self.left is not None:
+            count += self.left.count_leafs()
+        if self.right is not None:
+            count += self.right.count_leafs()
+        if self.right is None and self.left is None:
+            count += 1
+        return count
+        
 
     # We do a left-to-right in-order traversal of the tree
     # to get the key-value pairs sorted base on their keys
