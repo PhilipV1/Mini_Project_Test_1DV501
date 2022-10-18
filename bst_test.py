@@ -1,4 +1,5 @@
 import BstMap as bst
+import timeit
 
 my_dict = {"Clark": 43, "Adam": 35, "Bella": 24, "Jonathan": 19, "Victor": 29, "Trish": 26}
 my_map = bst.BstMap()
@@ -10,8 +11,8 @@ print(my_map.to_string())
 
 my_map.put("Bella", 28)
 my_map.put("Jonathan", 25)
-
 print(my_map.to_string())
+
 
 print(f"Size of the tree: {my_map.size()}")
 

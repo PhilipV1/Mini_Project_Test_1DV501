@@ -31,3 +31,4 @@ for s in delete:
     words.remove(s)
 print("\nget_size:", words.get_size())   # 10
 print("to_string():", words.to_string())   # { David Amer Owen Ella Morgan Fredrik Zoe Fred Albin Simon }
+
