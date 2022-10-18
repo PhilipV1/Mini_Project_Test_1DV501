@@ -94,12 +94,9 @@ class Node:
     def as_list(self, lst):
         if self.left is not None:
             self.left.as_list(lst)
-            lst.append((self.key, self.value))
-
+        lst.append((self.key, self.value))
         if self.right is not None:
             self.right.as_list(lst)
-            lst.append((self.key, self.value))
-
         return lst
 
 

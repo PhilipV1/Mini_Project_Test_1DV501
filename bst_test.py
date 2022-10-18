@@ -1,7 +1,7 @@
 import BstMap as bst
 import timeit
 
-my_dict = {"Clark": 43, "Adam": 35, "Bella": 24, "Jonathan": 19, "Victor": 29, "Trish": 26}
+my_dict = {"Clark": 43, "Adam": 35, "Bella": 24, "Jonathan": 19, "Victor": 29, "Trevor": 26}
 my_map = bst.BstMap()
 
 for v, k in my_dict.items():
