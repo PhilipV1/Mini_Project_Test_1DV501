@@ -67,7 +67,6 @@ class Node:
 
     def max_depth(self):
         '''Returns the max depth of the tree'''
-        # Fix this function
         l_depth = 0
         r_depth = 0
         if self.left is not None:

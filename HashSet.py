@@ -14,15 +14,15 @@ class HashSet:
     # Computes hash value for a word (a string)
     def get_hash(self, word):
         '''Getting hash code for a word using a summation of
-        the ASCII values and prime numbers. See reference:
-        https://cp-algorithms.com/string/string-hashing.html#calculation-of-the-hash-of-a-string'''
-        p = 37
-        m = 10e9 + 9
+        the ASCII values and prime numbers taking ideas from
+        Polynomial rolling hash functions'''
+        prime = 31
+        # Stort mod primtal för att hålla hash value inom en viss range
+        mod = 10e9 + 7
         hash_val = 0
         for i, char in enumerate(word):
-            # Note: we don't want to convert a->0 because a
-            # string of "aaaa" would evaluate to 0
-            hash_val += ((1 + ord(char) - ord('a')) * p**i) % m
+            hash_val += ord(char) * prime**i
+            hash_val % mod
         return round(hash_val)
 
     # Doubles size of bucket list
